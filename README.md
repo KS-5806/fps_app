@@ -38,3 +38,5 @@ youtubeやmildomなど動画投稿ができるサービスはあるが、FPSゲ�
 - Ruby
 - JavaScript
 - RSpec
+# 画面遷移図
+Figma:https://www.figma.com/design/7gsymt96HC0sOVvsdjahgo/%E7%84%A1%E9%A1%8C?node-id=0%3A1&t=y6sJGYFLw0DB4z0D-1
