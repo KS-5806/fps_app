@@ -40,3 +40,5 @@ youtubeやmildomなど動画投稿ができるサービスはあるが、FPSゲ�
 - RSpec
 # 画面遷移図
 Figma:https://www.figma.com/design/7gsymt96HC0sOVvsdjahgo/%E7%84%A1%E9%A1%8C?node-id=0%3A1&t=y6sJGYFLw0DB4z0D-1
+# ER図
+Draw.io:https://app.diagrams.net/#G1TgPBaJK-ZnP7qYzxJn6h2J1Z9mIsGgnT#%7B%22pageId%22%3A%22nVS1WyYFFD0oFAqzhmFS%22%7D
