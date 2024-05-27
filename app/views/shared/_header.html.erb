@@ -1,0 +1,53 @@
+<header>
+  <nav class='navbar navbar-expand-lg navigation navbar-light bg-light'>
+    <%= link_to '/', class: 'navbar-brand' do %>
+      <i class="bi bi-youtube"></i>
+      FPS Community
+    <% end %>
+    <button class='navbar-toggler' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent'
+      aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
+      <span class='navbar-toggler-icon'></span>
+    </button>
+
+    <div class='collapse navbar-collapse' id='navbarSupportedContent'>
+      <ul class='navbar-nav ms-auto main-nav align-items-center'>
+        <li class='nav-item'>
+          <%= link_to '#', class: 'dropdown-item' do %>
+            <i class="bi bi-file-earmark-play"></i>動画一覧
+          <% end %>
+        </li>
+
+        <li class='nav-item'>
+          <%= link_to '#', class: 'dropdown-item' do %>
+            <i class="bi bi-camera-reels"></i>動画作成
+          <% end %>
+        </li>
+
+        <li class='nav-item dropdown dropdown-slide'>
+          <%= link_to '#', class: 'nav-link', data: {bs_toggle: 'dropdown'}, aria: {haspopup: 'true', expanded: 'false'}, id: 'header-profile' do %>
+            <%= image_tag 'sample.jpg', class: 'rounded-circle mr15', width: '40', height: '40' %>
+          <% end %>
+          <div class='dropdown-menu dropdown-menu-end'>
+            <div class='dropdown-item'>らんてっく たろう</div>
+            <div class='dropdown-divider'></div>
+            <%= link_to '#', class: 'dropdown-item' do %>
+              <i class="bi bi-person-square"></i>プロフィール
+            <% end %>
+            <%= link_to '#', class: 'dropdown-item' do %>
+              <i class="bi bi-film"></i>投稿した動画
+            <% end %>
+            <%= link_to '#', class: 'dropdown-item' do %>
+            <i class="bi bi-person-check-fill"></i>フォロー中
+            <% end %>
+            <%= link_to '#', class: 'dropdown-item' do %>
+              <i class="bi bi-people"></i>フォロワー
+            <% end %>
+            <%= link_to '#', class: 'dropdown-item' do %>
+              <i class="bi bi-box-arrow-right"></i>ログアウト
+            <% end %>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

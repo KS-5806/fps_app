@@ -1,0 +1,20 @@
+@import "bootstrap";
+@import "top";
+
+.navbar-brand {
+  padding-left: 5px;
+  color: #FF7474;
+  .bi-youtube {
+    color: #3CBCF2;
+  }
+}
+
+.navbar-collapse {
+  .nav-item {
+    padding-left: 20px;
+  }
+  .bi {
+    padding-right: 10px;
+  }
+}
+
