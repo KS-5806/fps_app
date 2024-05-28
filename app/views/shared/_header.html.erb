@@ -13,13 +13,13 @@
       <ul class='navbar-nav ms-auto main-nav align-items-center'>
         <li class='nav-item'>
           <%= link_to '#', class: 'dropdown-item' do %>
-            <i class="bi bi-file-earmark-play"></i>動画一覧
+            <i class="bi bi-file-earmark-play"></i><%= t('header.post_index') %>
           <% end %>
         </li>
 
         <li class='nav-item'>
           <%= link_to '#', class: 'dropdown-item' do %>
-            <i class="bi bi-camera-reels"></i>動画作成
+            <i class="bi bi-camera-reels"></i><%= t('header.create_post') %>
           <% end %>
         </li>
 
@@ -31,19 +31,19 @@
             <div class='dropdown-item'>らんてっく たろう</div>
             <div class='dropdown-divider'></div>
             <%= link_to '#', class: 'dropdown-item' do %>
-              <i class="bi bi-person-square"></i>プロフィール
+              <i class="bi bi-person-square"></i><%= t('header.profile') %>
             <% end %>
             <%= link_to '#', class: 'dropdown-item' do %>
-              <i class="bi bi-film"></i>投稿した動画
+              <i class="bi bi-film"></i><%= t('header.posted_index') %>
             <% end %>
             <%= link_to '#', class: 'dropdown-item' do %>
-            <i class="bi bi-person-check-fill"></i>フォロー中
+            <i class="bi bi-person-check-fill"></i><%= t('header.follow') %>
             <% end %>
             <%= link_to '#', class: 'dropdown-item' do %>
-              <i class="bi bi-people"></i>フォロワー
+              <i class="bi bi-people"></i><%= t('header.follower') %>
             <% end %>
             <%= link_to logout_path, class: 'dropdown-item', method: :delete do %>
-              <i class="bi bi-box-arrow-right"></i>ログアウト
+              <i class="bi bi-box-arrow-right"></i><%= t('header.logout') %>
             <% end %>
           </div>
         </li>

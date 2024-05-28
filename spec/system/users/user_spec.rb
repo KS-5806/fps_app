@@ -6,10 +6,10 @@ RSpec.describe 'ユーザー登録', type: :system do
     it 'ユーザーが新規作成できること' do
       visit '/users/new'
       expect {
-        fill_in 'Name', with: 'ユーザー'
-        fill_in 'Email', with: 'example@example.com'
-        fill_in 'Password', with: '12345678'
-        fill_in 'Password confirmation', with: '12345678'
+        fill_in 'ユーザー名', with: 'ユーザー'
+        fill_in 'メールアドレス', with: 'example@example.com'
+        fill_in 'パスワード', with: '12345678'
+        fill_in 'パスワード確認', with: '12345678'
         click_button '登録'
         Capybara.assert_current_path("/", ignore_query: true)
       }.to change { User.count }.by(1)
@@ -20,7 +20,7 @@ RSpec.describe 'ユーザー登録', type: :system do
     it 'ユーザーが新規作成できない' do
       visit '/users/new'
       expect {
-        fill_in 'Email', with: 'example@example.com'
+        fill_in 'メールアドレス', with: 'example@example.com'
         click_button '登録'
       }.to change { User.count }.by(0)
     end
