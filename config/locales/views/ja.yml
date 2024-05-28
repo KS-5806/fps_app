@@ -40,3 +40,8 @@ ja:
   posts:
     index:
       no_result: 投稿動画がありません
+    new:
+      title: 動画作成
+    create:
+      success: 動画を作成しました
+      failure: 動画を作成出来ませんでした
