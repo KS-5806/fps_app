@@ -25,6 +25,8 @@ RSpec.describe 'ユーザー登録', type: :system do
         click_button '登録'
       }.to change { User.count }.by(0)
       expect(page).to have_content('ユーザー登録に失敗しました'), 'フラッシュメッセージ「ユーザー登録に失敗しました」が表示されていません'
+      expect(page).to have_content('ユーザー名を入力してください'), 'フラッシュメッセージ「ユーザー名を入力してください」が表示されていません'
+      expect(page).to have_content('パスワードは3文字以上で入力してください'), 'フラッシュメッセージ「パスワードは3文字以上で入力してください」が表示されていません'
     end
   end
 end
