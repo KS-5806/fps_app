@@ -74,6 +74,7 @@ RSpec.describe '投稿動画', type: :system do
           fill_in 'タイトル', with: 'テストタイトル'
           click_button '登録'
           expect(page).to have_content('動画を作成出来ませんでした'), 'フラッシュメッセージ「動画を作成出来ませんでした」が表示されていません'
+          expect(page).to have_content('内容を入力してください'), 'エラーメッセージ「内容を入力してください」が表示されていません'
         end
       end
     end
