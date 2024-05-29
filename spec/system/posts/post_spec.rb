@@ -62,6 +62,8 @@ RSpec.describe '投稿動画', type: :system do
         it '動画が作成できること' do
           fill_in 'タイトル', with: 'テストタイトル'
           fill_in '内容', with: 'テスト内容'
+          file_path = Rails.root.join('spec', 'fixtures', 'sample_movie.mp4')
+          attach_file "動画", file_path
           click_button '登録'
           Capybara.assert_current_path("/posts", ignore_query: true)
           expect(current_path).to eq('/posts'), '動画一覧画面に遷移していません'
@@ -72,6 +74,8 @@ RSpec.describe '投稿動画', type: :system do
 
         it '動画の作成に失敗すること' do
           fill_in 'タイトル', with: 'テストタイトル'
+          file_path = Rails.root.join('spec', 'fixtures', 'sample_movie.mp4')
+          attach_file "動画", file_path
           click_button '登録'
           expect(page).to have_content('動画を作成出来ませんでした'), 'フラッシュメッセージ「動画を作成出来ませんでした」が表示されていません'
           expect(page).to have_content('内容を入力してください'), 'エラーメッセージ「内容を入力してください」が表示されていません'
