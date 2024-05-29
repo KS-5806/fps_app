@@ -1,6 +1,11 @@
 <%= form_with model: post, local: true do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="form-group">
+    <%= f.label :movie %>
+    <%= f.file_field :movie, class: 'form-control mb-3', accept: 'image/*', onchange: 'previewImage(preview)' %>
+    <%= f.hidden_field :movie_cache %>
+  </div>
+  <div class="form-group">
     <%= f.label :title %>
     <%= f.text_field :title, class: 'form-control' %>
   </div>
