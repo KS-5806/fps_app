@@ -1,20 +1,13 @@
 <div class="col-sm-12 col-lg-4 mb-3">
 	<div id="post-id-<%= post.id %>">
 		<div class="card">
-			<%= image_tag post.movie.url, class: 'card-img-top', size: '300*200' %>
+			<%= video_tag post.movie.url, class: 'card-img-top', size: '300*200', controls: true, autobuffer: true %>
 			<div class="card-body">
 				<div class="d-flex">
 					<h4 class="card-title">
-						<%= link_to post.title, '#' %>
+						<%= link_to post.title, post_path(post) %>
 					</h4>
-					<div class="ms-auto">
-						<%= link_to "#", id: "button-edit-#{post.id}" do %>
-							<i class="bi bi-pencil-fill"></i>
-						<% end %>
-						<%= link_to "#", id: "button-delete-#{post.id}", method: :delete, data: {confirm: ""} do %>
-							<i class="bi bi-trash-fill"></i>
-						<% end %>
-					</div>
+					<%= render 'crud_menus', post: post %>
 				</div>
 				<ul class="list-inline">
 					<li><i class="bi bi-person"></i><%= post.user.name %></li>

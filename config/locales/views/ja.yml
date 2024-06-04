@@ -1,7 +1,11 @@
 ja:
   defaults:
+    post: 投稿
     flash_message:
       require_login: ログインしてください
+    message:
+      created: "%{item}を作成しました"
+      not_created: "%{item}を作成出来ませんでした"
   helpers:
     submit:
       create: 登録
@@ -40,8 +44,7 @@ ja:
   posts:
     index:
       no_result: 投稿動画がありません
+    show:
+      title: 動画詳細
     new:
       title: 動画作成
-    create:
-      success: 動画を作成しました
-      failure: 動画を作成出来ませんでした

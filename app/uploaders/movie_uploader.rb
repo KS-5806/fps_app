@@ -14,9 +14,9 @@ class MovieUploader < CarrierWave::Uploader::Base
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
-  def default_url
+  def default_url(*args)
     # デフォルトの画像ファイル
-    'post_placeholder.png'
+    'https://i.gyazo.com/d9d7dc0d07a4eb756841bcc946afc915.mp4'
   #   # For Rails 3.1+ asset pipeline compatibility:
   #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
@@ -36,8 +36,8 @@ class MovieUploader < CarrierWave::Uploader::Base
 
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  def extension_whitelist
-    %w[jpg jpeg gif png MOV wmv mp4]
+  def extension_allowlist
+    %w(MOV wmv mp4)
   end
 
   # Override the filename of the uploaded files:

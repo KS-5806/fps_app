@@ -43,6 +43,33 @@ RSpec.describe '投稿動画', type: :system do
         end
       end
     end
+    describe '投稿動画の詳細' do
+      context 'ログインしていない場合' do
+        it 'ログインページにリダイレクトされること' do
+          visit post_path(post)
+          expect(current_path).to eq login_path
+          expect(page).to have_content 'ログインしてください'
+        end
+      end
+
+      context 'ログインしている場合' do
+        before do
+          post
+          login_as(user)
+        end
+        it '投稿動画の詳細が表示されること' do
+          click_on('投稿動画一覧')
+          within "#post-id-#{post.id}" do
+            page.find_link(post.title, exact: true).click
+          end
+          Capybara.assert_current_path("/posts/#{post.id}", ignore_query: true)
+          expect(current_path).to eq("/posts/#{post.id}"), '掲示板のタイトルリンクから掲示板詳細画面へ遷移できません'
+          expect(page).to have_content post.title
+          expect(page).to have_content post.user.name
+          expect(page).to have_content post.body
+        end
+      end
+    end
     describe '動画の作成' do
       context 'ログインしていない場合' do
         it 'ログインページにリダイレクトされること' do
@@ -64,7 +91,7 @@ RSpec.describe '投稿動画', type: :system do
           fill_in '内容', with: 'テスト内容'
           file_path = Rails.root.join('spec', 'fixtures', 'sample_movie.mp4')
           attach_file "動画", file_path
-          click_button '登録'
+          click_button '投稿'
           Capybara.assert_current_path("/posts", ignore_query: true)
           expect(current_path).to eq('/posts'), '動画一覧画面に遷移していません'
           expect(page).to have_content('動画を作成しました'), 'フラッシュメッセージ「動画を作成しました」が表示されていません'
@@ -76,7 +103,7 @@ RSpec.describe '投稿動画', type: :system do
           fill_in 'タイトル', with: 'テストタイトル'
           file_path = Rails.root.join('spec', 'fixtures', 'sample_movie.mp4')
           attach_file "動画", file_path
-          click_button '登録'
+          click_button '投稿'
           expect(page).to have_content('動画を作成出来ませんでした'), 'フラッシュメッセージ「動画を作成出来ませんでした」が表示されていません'
           expect(page).to have_content('内容を入力してください'), 'エラーメッセージ「内容を入力してください」が表示されていません'
         end
