@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'ユーザー登録', type: :system do
+  it '正しいタイトルが表示されていること' do
+    visit '/users/new'
+    expect(page).to have_title("ユーザー登録 | FPS Community"), 'ユーザー登録ページのタイトルに「ユーザー登録 | FPS Community」が含まれていません。'
+  end
 
   context '入力情報正常系' do
     it 'ユーザーが新規作成できること' do

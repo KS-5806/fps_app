@@ -5,6 +5,11 @@ RSpec.describe 'ログイン・ログアウト', type: :system do
 
   describe '通常画面' do
     describe 'ログイン' do
+      it '正しいタイトルが表示されていること' do
+        visit '/login'
+        expect(page).to have_title("ログイン | FPS Community"), 'ログインページのタイトルに「ログイン | FPS Community」が含まれていません。'
+      end
+
       context '認証情報が正しい場合' do
         it 'ログインできること' do
           visit '/login'

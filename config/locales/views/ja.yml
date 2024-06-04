@@ -43,6 +43,7 @@ ja:
     follower: フォロワー
   posts:
     index:
+      title: 投稿動画一覧
       no_result: 投稿動画がありません
     show:
       title: 動画詳細
