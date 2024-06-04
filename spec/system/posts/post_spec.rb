@@ -23,6 +23,12 @@ RSpec.describe '投稿動画', type: :system do
           expect(current_path).to eq('/posts'), 'ヘッダーのリンクから投稿動画一覧画面へ遷移できません'
         end
 
+        it '正しいタイトルが表示されていること' do
+          login_as(user)
+          click_on('投稿動画一覧')
+          expect(page).to have_title("投稿動画一覧 | FPS Community"), '投稿動画一覧ページのタイトルに「投稿動画一覧 | FPS Community」が含まれていません。'
+        end
+
         context '投稿動画が一件もない場合' do
           it '何もない旨のメッセージが表示されること' do
             login_as(user)
@@ -68,6 +74,13 @@ RSpec.describe '投稿動画', type: :system do
           expect(page).to have_content post.user.name
           expect(page).to have_content post.body
         end
+        it '正しいタイトルが表示されていること' do
+          click_on('投稿動画一覧')
+          within "#post-id-#{post.id}" do
+            page.find_link(post.title, exact: true).click
+          end
+          expect(page).to have_title("#{post.title} | FPS Community"), '動画詳細ページのタイトルに動画のタイトルが含まれていません。'
+        end
       end
     end
     describe '動画の作成' do
@@ -84,6 +97,10 @@ RSpec.describe '投稿動画', type: :system do
         before do
           login_as(user)
           click_on('動画作成')
+        end
+
+        it '正しいタイトルが表示されていること' do
+          expect(page).to have_title("動画作成 | FPS Community"), '動画作成ページのタイトルに「動画作成 | FPS Community」が含まれていません。'
         end
 
         it '動画が作成できること' do

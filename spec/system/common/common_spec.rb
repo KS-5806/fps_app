@@ -16,6 +16,12 @@ RSpec.describe '共通系', type: :system do
         expect(page).to have_content('Copyright'), '「Copyright」というテキストが表示されていません'
       end
     end
+
+    describe 'タイトル' do
+      it 'タイトルが正しく表示されていること' do
+         expect(page).to have_title("FPS Community"), 'トップページのタイトルに「FPS Community」が含まれていません。'
+       end
+     end
   end
 
   context 'ログイン後' do
@@ -35,5 +41,10 @@ RSpec.describe '共通系', type: :system do
         expect(page).to have_content('ログアウト'), 'ヘッダーに「ログアウト」というテキストが表示されていません'
       end
     end
+    describe 'タイトル' do
+      it 'タイトルが正しく表示されていること' do
+         expect(page).to have_title("FPS Community"), 'トップページのタイトルに「FPS Community」が含まれていません。'
+       end
+     end
   end
 end
