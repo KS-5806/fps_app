@@ -24,7 +24,7 @@
               </ul>
             </div>
             <div class="d-flex">
-              <%= render 'crud_menus', post: @post %>
+              <%= render 'crud_menus', post: @post if current_user.own?(@post) %>
             </div>
           </div>
           <p><%= simple_format(@post.body) %></p>
