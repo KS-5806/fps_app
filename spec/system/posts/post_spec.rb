@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe '投稿動画', type: :system do
   let(:user) { create(:user) }
+  let(:another_user) { create(:user) }
   let(:post) { create(:post, user: user) }
 
   describe '投稿動画のCRUD' do
@@ -108,7 +109,7 @@ RSpec.describe '投稿動画', type: :system do
           fill_in '内容', with: 'テスト内容'
           file_path = Rails.root.join('spec', 'fixtures', 'sample_movie.mp4')
           attach_file "動画", file_path
-          click_button '投稿'
+          click_button '登録'
           Capybara.assert_current_path("/posts", ignore_query: true)
           expect(current_path).to eq('/posts'), '動画一覧画面に遷移していません'
           expect(page).to have_content('動画を作成しました'), 'フラッシュメッセージ「動画を作成しました」が表示されていません'
@@ -120,9 +121,76 @@ RSpec.describe '投稿動画', type: :system do
           fill_in 'タイトル', with: 'テストタイトル'
           file_path = Rails.root.join('spec', 'fixtures', 'sample_movie.mp4')
           attach_file "動画", file_path
-          click_button '投稿'
+          click_button '登録'
           expect(page).to have_content('動画を作成出来ませんでした'), 'フラッシュメッセージ「動画を作成出来ませんでした」が表示されていません'
           expect(page).to have_content('内容を入力してください'), 'エラーメッセージ「内容を入力してください」が表示されていません'
+        end
+      end
+    end
+
+    describe '投稿動画の更新' do
+      before { post }
+      context 'ログインしていない場合' do
+        it 'ログインページにリダイレクトされること' do
+          visit edit_post_path(post)
+          expect(current_path).to eq('/login'), 'ログインページにリダイレクトされていません'
+          expect(page).to have_content 'ログインしてください'
+        end
+      end
+
+      context 'ログインしている場合' do
+        context '自分の投稿動画' do
+          before do
+            login_as(user)
+            visit posts_path
+            find("#button-edit-#{post.id}").click
+          end
+          it '投稿動画が更新できること' do
+            fill_in 'タイトル', with: '編集後テストタイトル'
+            fill_in '内容', with: '編集後テスト内容'
+            click_button '更新'
+            Capybara.assert_current_path("/posts/#{post.id}", ignore_query: true)
+            expect(current_path).to eq post_path(post)
+            expect(page).to have_content('投稿動画を更新しました'), 'フラッシュメッセージ「投稿動画を更新しました」が表示されていません'
+            expect(page).to have_content('編集後テストタイトル'), '更新後のタイトルが表示されていません'
+            expect(page).to have_content('編集後テスト内容'), '更新後の内容が表示されていません'
+          end
+
+          it '投稿動画の作成に失敗すること' do
+            fill_in 'タイトル', with: '編集後テストタイトル'
+            fill_in '内容', with: ''
+            click_button '更新'
+            expect(page).to have_content('投稿動画を更新出来ませんでした'), 'フラッシュメッセージ「投稿動画を更新出来ませんでした」が表示されていません'
+          end
+        end
+
+        context '他人の投稿動画' do
+          it '編集ボタンが表示されないこと' do
+            login_as(another_user)
+            visit posts_path
+            expect(page).not_to have_selector("#button-edit-#{post.id}"), '他人の投稿動画に対して編集ボタンが表示されています'
+          end
+        end
+      end
+    end
+
+    describe '投稿動画の削除' do
+      before { post }
+      context '自分の投稿動画' do
+        it '投稿動画が削除できること', js: true do
+          login_as(user)
+          visit '/posts'
+          page.accept_confirm { find("#button-delete-#{post.id}").click }
+          expect(current_path).to eq('/posts'), '投稿動画削除後に、投稿動画の一覧ページに遷移していません'
+          expect(page).to have_content('投稿動画を削除しました'), 'フラッシュメッセージ「投稿動画を削除しました」が表示されていません'
+        end
+      end
+
+      context '他人の投稿動画' do
+        it '削除ボタンが表示されないこと' do
+          login_as(another_user)
+          visit posts_path
+          expect(page).not_to have_selector("#button-delete-#{post.id}"), '他人の投稿動画に対して削除ボタンが表示されています'
         end
       end
     end

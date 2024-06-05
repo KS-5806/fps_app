@@ -77,4 +77,5 @@ RSpec.configure do |config|
       Capybara.ignore_hidden_elements = false
     end
   end
+  config.include Sorcery::TestHelpers::Rails::Request, type: :request
 end

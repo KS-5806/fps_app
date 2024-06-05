@@ -6,6 +6,10 @@ ja:
     message:
       created: "%{item}を作成しました"
       not_created: "%{item}を作成出来ませんでした"
+      updated: 投稿動画を更新しました
+      not_updated: 投稿動画を更新出来ませんでした
+      deleted: 投稿動画を削除しました
+      delete_confirm: 削除しますか？
   helpers:
     submit:
       create: 登録
@@ -45,6 +49,8 @@ ja:
     index:
       title: 投稿動画一覧
       no_result: 投稿動画がありません
+    edit:
+      title: 投稿動画編集
     show:
       title: 動画詳細
     new:
