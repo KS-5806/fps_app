@@ -194,5 +194,32 @@ RSpec.describe '投稿動画', type: :system do
         end
       end
     end
+    describe '動画のブックマーク一覧' do
+      before { post }
+      context '1件もブックマークしていない場合' do
+        it '1件もない旨のメッセージが表示されること' do
+          login_as(user)
+          visit posts_path
+          find('#header-profile').click
+          click_on 'ブックマーク一覧'
+          Capybara.assert_current_path("/posts/bookmarks", ignore_query: true)
+          expect(current_path).to eq(bookmarks_posts_path), '課題で指定した形式のリンク先に遷移させてください'
+          expect(page).to have_content('ブックマーク中の動画がありません'), 'ブックマーク中の動画が一件もない場合、「ブックマーク中の動画がありません」というメッセージが表示されていません'
+        end
+      end
+
+      context 'ブックマークしている場合' do
+        it 'ブックマークした動画が表示されること' do
+          login_as(another_user)
+          visit posts_path
+          find("#bookmark-button-for-post-#{post.id}").click
+          find('#header-profile').click
+          click_on 'ブックマーク一覧'
+          Capybara.assert_current_path("/posts/bookmarks", ignore_query: true)
+          expect(current_path).to eq(bookmarks_posts_path), '課題で指定した形式のリンク先に遷移させてください'
+          expect(page).to have_content post.title
+        end
+      end
+    end
   end
 end

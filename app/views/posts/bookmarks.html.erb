@@ -17,8 +17,8 @@
   <div class="row">
     <div class="col-12">
       <div class="row">
-        <% if @posts.present? %>
-          <%= render @posts %>
+        <% if @bookmark_posts.present? %>
+          <%= render @bookmark_posts %>
         <% else %>
           <div class="mb-3"><%= t('.no_result') %></div>
         <% end %>
