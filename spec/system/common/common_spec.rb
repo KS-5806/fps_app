@@ -36,6 +36,7 @@ RSpec.describe '共通系', type: :system do
         find('#header-profile').click
         expect(page).to have_content('プロフィール'), 'ヘッダーに「プロフィール」というテキストが表示されていません'
         expect(page).to have_content('投稿した動画'), 'ヘッダーに「投稿した動画」というテキストが表示されていません'
+        expect(page).to have_content('ブックマーク一覧'), 'ヘッダーに「ブックマーク一覧」というテキストが表示されていません'
         expect(page).to have_content('フォロー中'), 'ヘッダーに「フォロー中」というテキストが表示されていません'
         expect(page).to have_content('フォロワー'), 'ヘッダーに「フォロワー」というテキストが表示されていません'
         expect(page).to have_content('ログアウト'), 'ヘッダーに「ログアウト」というテキストが表示されていません'

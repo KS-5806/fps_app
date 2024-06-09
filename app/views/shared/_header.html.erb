@@ -36,6 +36,7 @@
             <%= link_to '#', class: 'dropdown-item' do %>
               <i class="bi bi-film"></i><%= t('header.posted_index') %>
             <% end %>
+            <%= link_to t('header.bookmark_index'), bookmarks_posts_path, class: 'dropdown-item' %>
             <%= link_to '#', class: 'dropdown-item' do %>
             <i class="bi bi-person-check-fill"></i><%= t('header.follow') %>
             <% end %>
