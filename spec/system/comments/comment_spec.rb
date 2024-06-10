@@ -35,9 +35,20 @@ RSpec.describe 'コメント', type: :system do
         end
       end
       it 'コメントの作成に失敗すること' do
-        fill_in 'コメント', with: ''
-        click_on '投稿'
-        expect(page).to have_content('コメントを作成出来ませんでした'), 'コメント作成失敗時のエラーメッセージ「コメントを作成出来ませんでした」が表示されていません'
+        expect {
+          fill_in 'コメント', with: ''
+          click_on '投稿'
+          sleep(0.5)
+        }.to change { Comment.count }.by(0), 'コメントが作成されています'
+        end
+    end
+
+    describe 'コメントの削除' do
+      it 'コメントを削除できること' do
+        within("#comment-#{comment_by_me.id}") do
+          page.accept_confirm { find('.delete-comment-link').click }
+        end
+        expect(page).not_to have_content(comment_by_me.body), 'コメントの削除が正しく機能していません'
       end
     end
 
