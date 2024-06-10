@@ -48,6 +48,23 @@ RSpec.describe '投稿動画', type: :system do
             expect(page).to have_content(post.body), '投稿動画一覧画面に投稿動画の本文が表示されていません'
           end
         end
+        context '20件以下の場合' do
+          let!(:posts) { create_list(:post, 20) }
+          it 'ページングが表示されないこと' do
+            login_as(user)
+            visit posts_path
+            expect(page).not_to have_selector('.pagination')
+          end
+        end
+
+        context '21件以上ある場合' do
+          let!(:posts) { create_list(:post, 21) }
+          it 'ページングが表示されること' do
+            login_as(user)
+            visit posts_path
+            expect(page).to have_selector('.pagination'), '投稿動画一覧画面において掲示板が21件以上ある場合に、ページネーションのリンクが表示されていません'
+          end
+        end
       end
     end
     describe '投稿動画の詳細' do
@@ -218,6 +235,25 @@ RSpec.describe '投稿動画', type: :system do
           Capybara.assert_current_path("/posts/bookmarks", ignore_query: true)
           expect(current_path).to eq(bookmarks_posts_path), '課題で指定した形式のリンク先に遷移させてください'
           expect(page).to have_content post.title
+        end
+      end
+      context '20件以下の場合' do
+        let!(:posts) { create_list(:post, 20) }
+        it 'ページングが表示されないこと' do
+          posts.each { |post| Bookmark.create(user: another_user, post: post) }
+          login_as(another_user)
+          visit bookmarks_posts_path
+          expect(page).not_to have_selector('.pagination'), 'ブックマーク一覧画面において掲示板が20件以下の場合、ページネーションを表示させてはいけません'
+        end
+      end
+
+      context '21件以上ある場合' do
+        let!(:posts) { create_list(:post, 21) }
+        it 'ページングが表示されること' do
+          posts.each { |post| Bookmark.create(user: another_user, post: post) }
+          login_as(another_user)
+          visit bookmarks_posts_path
+          expect(page).to have_selector('.pagination'), 'ブックマーク一覧画面において掲示板が21件以上ある場合、ページネーションが表示されていません'
         end
       end
     end
