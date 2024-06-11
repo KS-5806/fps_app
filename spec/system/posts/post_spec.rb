@@ -221,7 +221,7 @@ RSpec.describe '投稿動画', type: :system do
           click_on 'ブックマーク一覧'
           Capybara.assert_current_path("/posts/bookmarks", ignore_query: true)
           expect(current_path).to eq(bookmarks_posts_path), '課題で指定した形式のリンク先に遷移させてください'
-          expect(page).to have_content('ブックマーク中の動画がありません'), 'ブックマーク中の動画が一件もない場合、「ブックマーク中の動画がありません」というメッセージが表示されていません'
+          expect(page).to have_content('ブックマーク中の投稿動画がありません'), 'ブックマーク中の投稿動画が一件もない場合、「ブックマーク中の投稿動画がありません」というメッセージが表示されていません'
         end
       end
 
