@@ -7,10 +7,13 @@ ja:
       created: "%{item}を作成しました"
       not_created: "%{item}を作成出来ませんでした"
       updated: 投稿動画を更新しました
+      profile_updated: ユーザーを更新しました
       not_updated: 投稿動画を更新出来ませんでした
+      profile_not_updated: ユーザーを更新出来ませんでした
       deleted: 投稿動画を削除しました
       delete_confirm: 削除しますか？
     search_word: 検索ワード
+    edit: 編集
   helpers:
     submit:
       create: 登録
@@ -59,3 +62,11 @@ ja:
       title: 投稿動画編集
     bookmarks:
       no_result: ブックマーク中の投稿動画がありません
+  profiles:
+    show:
+      title: プロフィール
+      post: 投稿動画
+      post_question: 質問動画
+      post_comment: コメントした動画
+    edit:
+      title: プロフィール編集 
