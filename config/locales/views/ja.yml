@@ -69,4 +69,18 @@ ja:
       post_question: 質問動画
       post_comment: コメントした動画
     edit:
-      title: プロフィール編集 
+      title: プロフィール編集
+  user_mailer:
+    reset_password_email:
+      reset: パスワードリセット
+  password_resets:
+    new:
+      title: パスワードリセット申請
+      submit: 送信
+    edit:
+      title: パスワードリセット
+    create:
+      success: パスワードリセット手順を送信しました
+    update:
+      success: パスワードを変更しました
+      fail: パスワードを変更できませんでした
