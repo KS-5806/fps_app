@@ -2,10 +2,10 @@
   <div class="row">
     <div class="col-12">
       <div class="row">
-        <% if @my_posts.present? %>
-          <%= render @my_posts %>
+        <% if @user_posts.present? %>
+          <%= render @user_posts %>
         <% else %>
-          <div class="mb-3"><%= t('.no_result') %></div>
+          <div class="mb-3"><%= t('posts.index.no_result') %></div>
         <% end %>
       </div>
     </div>

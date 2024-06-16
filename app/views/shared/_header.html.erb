@@ -30,7 +30,7 @@
           <div class='dropdown-menu dropdown-menu-end'>
             <div class='dropdown-item'><%= current_user.name %></div>
             <div class='dropdown-divider'></div>
-            <%= link_to profile_path, class: 'dropdown-item' do %>
+            <%= link_to user_path(current_user), class: 'dropdown-item' do %>
               <i class="bi bi-person-square"></i><%= t('header.profile') %>
             <% end %>
             <%= link_to '#', class: 'dropdown-item' do %>

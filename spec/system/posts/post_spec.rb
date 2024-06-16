@@ -87,10 +87,23 @@ RSpec.describe '投稿動画', type: :system do
             page.find_link(post.title, exact: true).click
           end
           Capybara.assert_current_path("/posts/#{post.id}", ignore_query: true)
-          expect(current_path).to eq("/posts/#{post.id}"), '掲示板のタイトルリンクから掲示板詳細画面へ遷移できません'
+          expect(current_path).to eq("/posts/#{post.id}"), '投稿動画のタイトルリンクから投稿動画詳細画面へ遷移できません'
           expect(page).to have_content post.title
           expect(page).to have_content post.user.name
           expect(page).to have_content post.body
+        end
+        it '投稿者のプロフィールが表示されること' do
+          click_on('投稿動画一覧')
+          within "#post-id-#{post.id}" do
+            page.find_link(post.user.name, exact: true).click
+          end
+          Capybara.assert_current_path("/users/#{user.id}", ignore_query: true)
+          expect(current_path).to eq("/users/#{user.id}"), '投稿動画のユーザー名リンクからプロフィールへ遷移できません'
+          expect(page).to have_content(user.name), 'プロフィールページにユーザー名が表示されていません'
+          expect(page).to have_content('フォロー中'), 'プロフィールページにフォロー中が表示されていません'
+          expect(page).to have_content('フォロワー'), 'プロフィールページにフォロワーが表示されていません'
+          expect(page).to have_content('投稿動画'), 'プロフィールページに投稿動画が表示されていません'
+          expect(page).to have_content('質問動画'), 'プロフィールページに質問動画が表示されていません'
         end
         it '正しいタイトルが表示されていること' do
           click_on('投稿動画一覧')
