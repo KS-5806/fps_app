@@ -37,6 +37,13 @@ ja:
     new:
       title: ユーザー登録
       to_login_page: ログインページへ
+    show:
+      title: プロフィール
+      post: 投稿動画
+      post_question: 質問動画
+      post_comment: コメントした動画
+    edit:
+      title: プロフィール編集
     create:
       success: ユーザー登録が完了しました
       failure: ユーザー登録に失敗しました
@@ -62,14 +69,6 @@ ja:
       title: 投稿動画編集
     bookmarks:
       no_result: ブックマーク中の投稿動画がありません
-  profiles:
-    show:
-      title: プロフィール
-      post: 投稿動画
-      post_question: 質問動画
-      post_comment: コメントした動画
-    edit:
-      title: プロフィール編集
   user_mailer:
     reset_password_email:
       reset: パスワードリセット

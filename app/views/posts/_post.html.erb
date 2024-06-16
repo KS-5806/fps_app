@@ -9,14 +9,14 @@
 					</h4>
 					<div class="ms-auto">
 						<% if current_user.own?(post) %>
-							<%= render 'crud_menus', post: post %>
+							<%= render 'posts/crud_menus', post: post %>
 						<% else %>
-							<%= render 'bookmark_button', post: post %>
+							<%= render 'posts/bookmark_button', post: post %>
 						<% end %>
 					</div>
 				</div>
 				<ul class="list-inline">
-					<li><i class="bi bi-person"></i><%= post.user.name %></li>
+					<li><i class="bi bi-person"></i><%= link_to post.user.name, user_path(post.user) %></li>
 					<li><i class="bi bi-calendar"></i><%= l post.created_at, format: :short %></li>
 				</ul>
 				<p class="card-text"><%= post.body %></p>

@@ -1,16 +1,13 @@
-<% content_for(:title, t('.title')) %>
+<% content_for(:title, @user.name) %>
 <div class="container pt-3">
-  <div class="col-md-10">
-    <h1 class="float-left mb-2"><%= t('.title') %></h1>
-  </div>
   <div class="row">
     <div class="col-md-2 text-center mb-2">
-      <%= image_tag current_user.avatar.url, class: 'rounded-circle', size: '150x150' %>
+      <%= image_tag @user.avatar.url, class: 'rounded-circle', size: '150x150' %>
     </div>
     <div class="col-md-10 mb-2">
       <div class="row">
         <div class="col-md-8">
-          <h3 class="text-left fw-bold pt-2"><%= current_user.name %></h3>
+          <h3 class="text-left fw-bold pt-2"><%= @user.name %></h3>
         </div>
         <div class="col-md-4">
           <div class="row">
@@ -21,19 +18,23 @@
               <p class="text-center fw-semibold pt-2"><%= t('header.follower') %></p>
             </div>
             <div class="text-center col-sm-4">
-              <%= link_to t('defaults.edit'), edit_profile_path, class: 'btn btn-primary rounded-pill' %>
+              <% if current_user == @user %>
+                <%= link_to t('defaults.edit'), edit_user_path, class: 'btn btn-primary rounded-pill' %>
+              <% end %>
             </div>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-8">
-          <%= User.human_attribute_name(:email) %> :
-          <%= current_user.email %>
+          <% if current_user == @user %>
+            <%= User.human_attribute_name(:email) %> :
+            <%= current_user.email %>
+          <% end %>
         </div>
       </div>
       <div class="row">
-        <p><%= simple_format(current_user.introduction) %></p>
+        <p><%= simple_format(@user.introduction) %></p>
       </div>
     </div>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -43,14 +44,18 @@
       <li class="nav-item" role="presentation">
         <button class="nav-link" id="post_question-tab" data-bs-toggle="tab" data-bs-target="#post_question-tab-pane" type="button" role="tab" aria-controls="post_question-tab-pane" aria-selected="false"><%= t('.post_question') %></button>
       </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="post_comment-tab" data-bs-toggle="tab" data-bs-target="#post_comment-tab-pane" type="button" role="tab" aria-controls="post_comment-tab-pane" aria-selected="false"><%= t('.post_comment') %></button>
-      </li>
+      <% if current_user == @user %>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="post_comment-tab" data-bs-toggle="tab" data-bs-target="#post_comment-tab-pane" type="button" role="tab" aria-controls="post_comment-tab-pane" aria-selected="false"><%= t('.post_comment') %></button>
+        </li>
+      <% end %>
     </ul>
     <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="post-tab-pane" role="tabpanel" aria-labelledby="post-tab" tabindex="0"><%= render 'my_posts' %></div>
+      <div class="tab-pane fade show active" id="post-tab-pane" role="tabpanel" aria-labelledby="post-tab" tabindex="0"><%= render 'user_posts' %></div>
       <div class="tab-pane fade" id="post_question-tab-pane" role="tabpanel" aria-labelledby="post_question-tab" tabindex="0">...</div>
-      <div class="tab-pane fade" id="post_comment-tab-pane" role="tabpanel" aria-labelledby="post_comment-tab" tabindex="0">...</div>
+      <% if current_user == @user %>
+        <div class="tab-pane fade" id="post_comment-tab-pane" role="tabpanel" aria-labelledby="post_comment-tab" tabindex="0">...</div>
+      <% end %>
     </div>
   </div>
 </div>

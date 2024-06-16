@@ -44,8 +44,8 @@ RSpec.describe '共通系', type: :system do
     end
     describe 'タイトル' do
       it 'タイトルが正しく表示されていること' do
-         expect(page).to have_title("FPS Community"), 'トップページのタイトルに「FPS Community」が含まれていません。'
-       end
-     end
+        expect(page).to have_title("FPS Community"), 'トップページのタイトルに「FPS Community」が含まれていません。'
+      end
+    end
   end
 end
