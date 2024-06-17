@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root "static_pages#top"
-  resources :users
+  resources :users do
+    resource :relationships, only: [:create, :destroy]
+    get "followings", to: "relationships#followings", as: "followings"
+    get "followers", to: "relationships#followers", as: "followers"
+  end
   resources :posts do
     resources :comments, only: %i[create destroy], shallow: true
     collection do

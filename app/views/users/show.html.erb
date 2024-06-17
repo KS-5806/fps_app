@@ -6,20 +6,30 @@
     </div>
     <div class="col-md-10 mb-2">
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-7 mb-2">
           <h3 class="text-left fw-bold pt-2"><%= @user.name %></h3>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
           <div class="row">
             <div class="col-sm-4">
-              <p class="text-center fw-semibold pt-2"><%= t('header.follow') %></p>
+              <p class="text-center fw-semibold">
+                <%= link_to user_followings_path(@user), class: 'btn btn-outline-secondary rounded-pill' do %>
+                  <%= t('header.follow') %> : <%= @user.followings.count %>
+                <% end %>
+              </p>
             </div>
             <div class="col-sm-4">
-              <p class="text-center fw-semibold pt-2"><%= t('header.follower') %></p>
+              <p class="text-center fw-semibold">
+                <%= link_to user_followers_path(@user), class: 'btn btn-outline-secondary rounded-pill' do %>
+                  <%= t('header.follower') %> : <%= @user.followers.count %>
+                <% end %>
+              </p>
             </div>
             <div class="text-center col-sm-4">
               <% if current_user == @user %>
                 <%= link_to t('defaults.edit'), edit_user_path, class: 'btn btn-primary rounded-pill' %>
+              <% else %>
+                <%= render "relationships/follow_btn", user: @user, options: { class: ""} %>
               <% end %>
             </div>
           </div>

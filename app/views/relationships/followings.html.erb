@@ -1,0 +1,13 @@
+<% content_for(:title, t('.title')) %>
+<div class="container pt-5">
+  <div class="row mb-3">
+    <div class="col-lg-10 offset-lg-1">
+      <h2><%= t('.title') %></h2>
+      <% if @users.exists? %>
+        <%= render "/users/index", users: @users %>
+      <% else %>
+        <p>ユーザーはいません</p>
+      <% end %>
+    </div>
+  </div>
+</div>
