@@ -2,6 +2,10 @@ class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
   before_action :set_user, only: %i[edit update]
 
+  def show
+    @user = User.find(params[:id])
+  end
+
   def new
     @user = User.new
   end

@@ -83,3 +83,10 @@ ja:
     update:
       success: パスワードを変更しました
       fail: パスワードを変更できませんでした
+  relationships:
+    followings:
+      title: フォロー中一覧
+    followers:
+      title: フォロワー一覧
+    follow: フォロー数
+    follower: フォロワー数

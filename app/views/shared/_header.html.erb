@@ -36,11 +36,13 @@
             <%= link_to '#', class: 'dropdown-item' do %>
               <i class="bi bi-film"></i><%= t('header.posted_index') %>
             <% end %>
-            <%= link_to t('header.bookmark_index'), bookmarks_posts_path, class: 'dropdown-item' %>
-            <%= link_to '#', class: 'dropdown-item' do %>
-            <i class="bi bi-person-check-fill"></i><%= t('header.follow') %>
+            <%= link_to bookmarks_posts_path, class: 'dropdown-item' do %>
+              <i class="bi bi-bookmark-star"></i><%= t('header.bookmark_index') %>
             <% end %>
-            <%= link_to '#', class: 'dropdown-item' do %>
+            <%= link_to "/users/#{current_user.id}/followings", class: 'dropdown-item' do %>
+              <i class="bi bi-person-check-fill"></i><%= t('header.follow') %>
+            <% end %>
+            <%= link_to "/users/#{current_user.id}/followers", class: 'dropdown-item' do %>
               <i class="bi bi-people"></i><%= t('header.follower') %>
             <% end %>
             <%= link_to logout_path, class: 'dropdown-item', method: :delete do %>
