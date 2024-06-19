@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "favorite-button-for-post-#{@post.id}" do %>
+  <%= render 'posts/favorite', post: post %>
+<% end %>
