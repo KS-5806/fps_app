@@ -5,6 +5,8 @@ class Post < ApplicationRecord
   has_many :post_tag_relations, dependent: :destroy
   has_many :tags, through: :post_tag_relations, dependent: :destroy
 
+  has_many :favorites, dependent: :destroy
+
   validates :title, presence: true, length: { maximum: 255 }
   validates :body, presence: true, length: { maximum: 65_535 }
 
@@ -21,5 +23,9 @@ class Post < ApplicationRecord
       tag = Tag.find_or_create_by(name: new_name)
       self.tags << tag
     end
+  end
+
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
   end
 end

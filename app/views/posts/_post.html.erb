@@ -3,6 +3,9 @@
 		<div class="card">
 			<%= video_tag post.movie.url, class: 'card-img-top', size: '300*200', controls: true, autobuffer: true %>
 			<div class="card-body">
+				<div id="favorite-button-for-post-<%= post.id %>">
+					<%= render "posts/favorite_btn", post: post %>
+				</div>
 				<% if post.post_status == "質問動画" %>
 					<div class="badge bg-success text-wrap fs-6 mb-2">
 						<%= post.post_status %>

@@ -1,0 +1,4 @@
+<%= link_to post_favorites_path(post), class:"userList", data: { turbo_method: :delete } do %>
+  <i class="bi bi-suit-heart-fill" aria-hidden="true" style="color: red;"></i>
+  <span class='fw-bold'><%= post.favorites.count %></span>
+<% end %>
