@@ -3,6 +3,11 @@
 		<div class="card">
 			<%= video_tag post.movie.url, class: 'card-img-top', size: '300*200', controls: true, autobuffer: true %>
 			<div class="card-body">
+				<% if post.post_status == "質問動画" %>
+					<div class="badge bg-success text-wrap fs-6 mb-2">
+						<%= post.post_status %>
+					</div>
+				<% end %>
 				<div class="d-flex">
 					<h4 class="card-title">
 						<%= link_to post.title, post_path(post) %>
@@ -15,6 +20,11 @@
 						<% end %>
 					</div>
 				</div>
+				<% post.tags.each do |tag| %>
+					<span class="badge rounded-pill bg-primary text-decoration-none text-white mb-2">
+						<%= tag.name %>
+					</span>
+				<% end %>
 				<ul class="list-inline">
 					<li><i class="bi bi-person"></i><%= link_to post.user.name, user_path(post.user) %></li>
 					<li><i class="bi bi-calendar"></i><%= l post.created_at, format: :short %></li>

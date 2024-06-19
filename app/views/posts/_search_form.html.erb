@@ -1,6 +1,8 @@
 <%= search_form_for @q, url: url do |f| %>
-  <div class="input-group mb-3">
-    <%= f.search_field :title_or_body_cont, class: 'form-control', placeholder: t('defaults.search_word') %>
+  <div class="d-flex mb-3">
+    <%= f.search_field :title_or_body_cont, class: 'form-control me-2', placeholder: t('defaults.search_word'), id: 'search_field_of_post' %>
+    <%= f.search_field :tags_name_cont, class: 'form-control me-2', placeholder: t('defaults.search_tag'), id: 'search_field_of_tag' %>
+    <%= f.select :post_status_eq, [['質問動画', '質問動画']], {include_blank: '選択なし'}, class: 'sample border rounded me-2' %>
     <div class="input-group-append">
       <%= f.submit class: 'btn btn-primary' %>
     </div>

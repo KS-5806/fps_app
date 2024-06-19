@@ -13,6 +13,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @user_posts = @user.posts.order(created_at: :desc).page(params[:page])
+    @question_posts = @user.posts.where(post_status: '質問動画').order(created_at: :desc).page(params[:page])
+    @q = current_user.bookmark_posts.ransack(params[:q])
+    @bookmark_posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page])
   end
 
   def edit; end

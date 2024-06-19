@@ -16,5 +16,6 @@ ja:
         title: タイトル
         body: 内容
         movie: 動画
+        tag_names: タグ
       comment:
         body: コメント

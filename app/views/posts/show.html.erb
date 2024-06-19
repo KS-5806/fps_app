@@ -11,14 +11,26 @@
               <%= video_tag @post.movie.url, class: 'product-img', controls: true, autobuffer: true %>
             </div>
             <div class='col-md-9'>
-              <h3 style='display: inline;'><%= @post.title %></h3>
+              <% if @post.post_status == "質問動画" %>
+                <div class="badge bg-success text-wrap fs-5 mb-2">
+                  <%= @post.post_status %>
+                </div>
+              <% end %>
+              <div class='d-flex'>
+                <h3 style='display: inline;'><%= @post.title %></h3>
+                <div class="ms-auto">
+                  <%= render 'crud_menus', post: @post if current_user.own?(@post) %>
+                </div>
+              </div>
+              <% @post_tags.each do |tag| %>
+                <span class="badge rounded-pill bg-primary text-decoration-none text-white mb-2">
+                  <%= tag.name %>
+                </span>
+              <% end %>
               <ul class="list-inline">
                 <li class="list-inline-item">by <%= @post.user.name %></li>
                 <li class="list-inline-item"><%= l @post.created_at, format: :long %></li>
               </ul>
-            </div>
-            <div class="d-flex">
-              <%= render 'crud_menus', post: @post if current_user.own?(@post) %>
             </div>
           </div>
           <p><%= simple_format(@post.body) %></p>
