@@ -13,6 +13,7 @@ ja:
       deleted: 投稿動画を削除しました
       delete_confirm: 削除しますか？
     search_word: 検索ワード
+    search_tag: タグ検索
     edit: 編集
   helpers:
     submit:
@@ -41,7 +42,6 @@ ja:
       title: プロフィール
       post: 投稿動画
       post_question: 質問動画
-      post_comment: コメントした動画
     edit:
       title: プロフィール編集
     create:
@@ -60,6 +60,8 @@ ja:
   posts:
     new:
       title: 動画作成
+      question: 質問投稿
+      not_question: 質問投稿じゃない
     show:
       title: 動画詳細
     index:

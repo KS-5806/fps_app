@@ -11,6 +11,8 @@ Rails.application.routes.draw do
       get :bookmarks
     end
   end
+  get "search_tag", to: "posts#search_tag"
+
   resources :bookmarks, only: %i[create destroy]
   resources :password_resets, only: %i[new create edit update]
 

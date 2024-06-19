@@ -1,0 +1,13 @@
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <% if @question_posts.present? %>
+          <%= render @question_posts %>
+        <% else %>
+          <div class="mb-3"><%= t('posts.index.no_result') %></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
