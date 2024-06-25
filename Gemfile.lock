@@ -104,8 +104,6 @@ GEM
     config (5.5.1)
       deep_merge (~> 1.2, >= 1.2.1)
     crass (1.0.6)
-    cssbundling-rails (1.4.0)
-      railties (>= 6.0.0)
     date (3.3.4)
     debug (1.9.2)
       irb (~> 1.10)
@@ -401,7 +399,6 @@ DEPENDENCIES
   capybara
   carrierwave
   config
-  cssbundling-rails
   debug
   factory_bot_rails
   faker
