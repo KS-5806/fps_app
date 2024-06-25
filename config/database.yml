@@ -83,7 +83,7 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: app_production
-  username: app
-  password: <%= ENV["APP_DATABASE_PASSWORD"] %>
+  adapter: postgresql
+  encoding: unicode
+  database: railsgirls_production
+  pool: 5
