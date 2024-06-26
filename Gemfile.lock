@@ -110,6 +110,10 @@ GEM
       reline (>= 0.3.8)
     deep_merge (1.2.2)
     diff-lcs (1.5.1)
+    dotenv (3.1.2)
+    dotenv-rails (3.1.2)
+      dotenv (= 3.1.2)
+      railties (>= 6.1)
     erubi (1.12.0)
     execjs (2.9.1)
     factory_bot (6.4.6)
@@ -398,6 +402,7 @@ DEPENDENCIES
   carrierwave
   config
   debug
+  dotenv-rails
   factory_bot_rails
   faker
   importmap-rails (~> 2.0)
