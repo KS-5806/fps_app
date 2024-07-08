@@ -18,6 +18,10 @@
         </li>
 
         <li class="nav-item">
+          <%= link_to t('header.gest_login'), '/guest_login', class: 'nav-link', method: :post %>
+        </li>
+
+        <li class="nav-item">
           <%= link_to login_path, class: 'nav-link' do %>
             <i class="bi bi-box-arrow-in-right"></i><%= t('header.login') %>
           <% end %>

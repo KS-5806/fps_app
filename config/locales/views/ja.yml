@@ -50,6 +50,7 @@ ja:
   header:
     login: ログイン
     logout: ログアウト
+    gest_login: ゲストログイン
     post_index: 投稿動画一覧
     create_post: 動画作成
     profile: プロフィール
