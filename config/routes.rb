@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root "static_pages#top"
+  get 'howto', to: 'static_pages#howto'
   resources :users do
     resource :relationships, only: [:create, :destroy]
     get "followings", to: "relationships#followings", as: "followings"
