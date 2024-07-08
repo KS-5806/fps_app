@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root "static_pages#top"
+  get 'howto', to: 'static_pages#howto'
   resources :users do
     resource :relationships, only: [:create, :destroy]
     get "followings", to: "relationships#followings", as: "followings"
@@ -22,6 +23,8 @@ Rails.application.routes.draw do
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
+
+  post '/guest_login', to: 'user_sessions#guest_login'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

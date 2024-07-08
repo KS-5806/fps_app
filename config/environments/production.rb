@@ -63,18 +63,18 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "app_production"
 
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = Settings.default_url_options.to_h
   config.action_mailer.raise_delivery_errors = true
-
+  host = 'https://my-fps-app-9dc638bc06ec.herokuapp.com'
+  config.action_mailer.default_url_options = { host: host }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
-    port:                 587,
-    domain:               'my-fps-app-9dc638bc06ec.herokuapp.com',
-    user_name:            ENV['GMAIL_USERNAME'],
-    password:             ENV['GMAIL_PASSWORD'],
-    authentication:       'plain',
-    enable_starttls_auto: true 
+  ActionMailer::Base.smtp_settings = {
+    :port           => 587,
+    :address        => 'smtp.gmail.com',
+    :user_name      => ENV['GMAIL_USER'],
+    :password       => ENV['GMAIL_PASS'], # Googleが発行する、16桁のアプリケーションパスワード
+    :domain         => 'gmail.com',
+    :authentication => :plain,
+    :enable_starttls_auto => true
   }
 
   # Ignore bad email addresses and do not raise email delivery errors.

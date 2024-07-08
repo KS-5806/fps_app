@@ -50,6 +50,7 @@ ja:
   header:
     login: ログイン
     logout: ログアウト
+    gest_login: ゲストログイン
     post_index: 投稿動画一覧
     create_post: 動画作成
     profile: プロフィール
@@ -57,6 +58,7 @@ ja:
     bookmark_index: ブックマーク一覧
     follow: フォロー中
     follower: フォロワー
+    how_to: 使い方
   posts:
     new:
       title: 動画作成
