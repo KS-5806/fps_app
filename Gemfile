@@ -97,3 +97,5 @@ group :test do
 end
 
 gem "importmap-rails", "~> 2.0"
+gem 'fog-aws'
+gem "aws-sdk-s3", require: false
